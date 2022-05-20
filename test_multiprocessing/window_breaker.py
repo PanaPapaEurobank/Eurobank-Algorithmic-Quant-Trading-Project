@@ -1,19 +1,13 @@
 import numpy as np
 import pandas as pd
-
 import sqlite3
 import math
 from functools import partial
 import multiprocessing
 
-
-
 database = sqlite3.connect("Dataset.db")
 data = pd.read_sql_query("SELECT * FROM Data", database)
-
 eurusd_series = data.iloc[:, 2]
-
-
 
 from multiprocessing import Process
 
@@ -39,7 +33,6 @@ def window_breaker(data_series, window_size, a_pool):
         
     return results_list
 
-
 # Chunks maker using one core only
 def window_breaker2(data_series, window_size):
 
@@ -49,9 +42,6 @@ def window_breaker2(data_series, window_size):
         results_list.append(data_series.iloc[i:(i + window_size),:])
         
     return results_list
-
-
-
 
 import time
 import os
